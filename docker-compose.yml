@@ -1,0 +1,45 @@
+services:
+
+  spark-master:
+    build: .
+    container_name: spark-master
+    ports:
+      - "8080:8080" # Spark master web UI
+      - "4040:4040" # Spark UI
+      - "7077:7077" # Spark master port
+    volumes:
+      - ./spark/events:/opt/spark/events
+      - ./spark/apps:/opt/spark/apps
+    command: spark-class org.apache.spark.deploy.master.Master
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080" ]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+
+  spark-history-server:
+    build: .
+    ports:
+      - "18080:18080" # Spark History server Ui
+    depends_on:
+      - spark-master
+    command: spark-class org.apache.spark.deploy.history.HistoryServer --properties-file /opt/spark/conf/spark-defaults.conf
+    volumes:
+      - ./spark/events:/opt/spark/events
+
+  spark-worker:
+    build: .
+    deploy:
+      mode: replicated
+      replicas: 2
+    environment:
+      - SPARK_MASTER=spark://spark-master:7077
+      - SPARK_WORKER_CORES=1
+      - SPARK_WORKER_MEMORY=3G
+      - SPARK_DRIVER_MEMORY=1G
+      - SPARK_EXECUTOR_MEMORY=1G
+    volumes:
+      - ./spark/events:/opt/spark/events
+    depends_on:
+      - spark-master
+    command: spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
