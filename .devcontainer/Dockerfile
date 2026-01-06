@@ -15,7 +15,7 @@ RUN apt-get update && \
 RUN wget --no-verbose -O apache-spark.tgz "https://dlcdn.apache.org/spark/spark-$SPARK_VERSION/spark-$SPARK_VERSION-bin-hadoop$HADOOP_VERSION.tgz" \
     && tar -xf apache-spark.tgz -C $SPARK_HOME --strip-components 1 \
     && rm apache-spark.tgz \
-    && mkdir -p $SPARK_HOME/events
+    && mkdir -p /tmp/spark-events
 
 EXPOSE 8080 7077 18080 4040
 

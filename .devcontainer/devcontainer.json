@@ -5,13 +5,10 @@
 	"dockerComposeFile": "./docker-compose.yml",
 	"service": "spark-client",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"shutdownAction": "stopCompose",
 
 	"remoteEnv": {
 		"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
-	},
-
-	"features": {
-    	"ghcr.io/devcontainers/features/git:1": {}
 	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
@@ -24,11 +21,14 @@
 	// "remoteUser": "root"
   	"customizations" : {
 		"vscode": {
-			"extensions": ["ms-python.python"]
+			"settings": {
+				"chat.disableAIFeatures": true
+			},
+			"extensions": ["ms-python.python", "ms-python.debugpy"]
 		},
 	 	"jetbrains" : {
-   			"backend" : "IntelliJ"
+   			"backend" : "IntelliJ",
+			// It requires restart the IDE to apply the changes
     	}
   	}
-
 }
