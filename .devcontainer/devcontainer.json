@@ -27,7 +27,7 @@
 			"extensions": ["ms-python.python", "ms-python.debugpy"]
 		},
 	 	"jetbrains" : {
-   			"backend" : "IntelliJ",
+   			"backend" : "IntelliJ"
 			// It requires restart the IDE to apply the changes
     	}
   	}
