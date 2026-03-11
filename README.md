@@ -15,3 +15,5 @@ Spark cluster details (editable in `./.devcontainers/docker-compose.yaml`):
 Execution:
 - Run in DevContainers.
 - Execute the Spark Application in `./apps` in the editor directly (if it runs in DevContainers).
+
+Test
