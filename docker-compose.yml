@@ -17,15 +17,6 @@ services:
     #  timeout: 3s
     #  retries: 3
 
-  spark-client:
-    build: .
-    depends_on:
-      - spark-master
-    volumes:
-      - ../:/workspaces/pyspark_local
-      - spark-events:/tmp/spark-events
-    command: tail -f /dev/null
-
   spark-history-server:
     build: .
     ports:
