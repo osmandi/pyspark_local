@@ -18,6 +18,6 @@ RUN wget --no-verbose -O apache-spark.tgz "https://dlcdn.apache.org/spark/spark-
 
 ENV PATH=$PATH:$SPARK_HOME/bin
 
-EXPOSE 8080 7077 18080 4040
+EXPOSE 8080 7077 18080 4040 6066
 
 COPY ./spark-defaults.conf $SPARK_HOME/conf/

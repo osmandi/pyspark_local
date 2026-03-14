@@ -8,6 +8,7 @@ services:
       - "8080:8080" # Spark master web UI
       - "4040:4040" # Spark UI
       - "7077:7077" # Spark master port
+      - "6066:6066" # Spark master cluster port
     volumes:
       - spark-events:/tmp/spark-events
     command: spark-class org.apache.spark.deploy.master.Master
