@@ -3,6 +3,7 @@ name: "pyspark_local"
 services:
 
   spark-master:
+    container_name: spark-master
     build: .
     ports:
       - "8080:8080" # Spark master web UI
@@ -11,6 +12,8 @@ services:
       - "6066:6066" # Spark master cluster port
     volumes:
       - spark-events:/tmp/spark-events
+      - ./apps:/opt/spark/apps
+      - ./data:/opt/spark/data
     command: spark-class org.apache.spark.deploy.master.Master
     #healthcheck:
     #  test: [ "CMD", "curl", "-f", "http://localhost:8080" ]
