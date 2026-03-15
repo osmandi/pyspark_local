@@ -8,7 +8,8 @@ WORKDIR $SPARK_HOME
 
 # Install dependencies
 RUN apt-get update && \
-    apt-get install -y wget openjdk-21-jre
+    apt-get install -y wget openjdk-21-jre && \
+    pip install pyspark==$SPARK_VERSION
 
 # Install Spark
 RUN wget --no-verbose -O apache-spark.tgz "https://dlcdn.apache.org/spark/spark-$SPARK_VERSION/spark-$SPARK_VERSION-bin-hadoop$HADOOP_VERSION.tgz" \
