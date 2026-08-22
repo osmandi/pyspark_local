@@ -1,6 +1,6 @@
 FROM python:3.12-slim
 
-ENV SPARK_VERSION=4.1.1 \
+ENV SPARK_VERSION=4.2.0 \
     SPARK_HOME=/opt/spark \
     HADOOP_VERSION=3
 
